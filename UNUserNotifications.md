@@ -305,7 +305,8 @@ func didReceive(_ notification: UNNotification) {
 ---------------------
 
 Source:
+
 1. https://onevcat.com/2016/08/notification/
 2. https://github.com/maquannene/UserNotifications
-
-
+3. https://blog.pusher.com/how-to-send-ios-10-notifications-using-the-push-notifications-api/
+4. https://github.com/nomad/houston
