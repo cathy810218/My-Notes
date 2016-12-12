@@ -2,7 +2,7 @@
 
 ### **How it works?**
 
-Import the new api in `AppDelegate.m`
+Import the new api in `AppDelegate.swift`
 ```swift
 import UserNotifications
 ```
@@ -81,7 +81,7 @@ There are 3 types of NotificationTrigger:
 
 
 
-### **Remote Notification**
+* ### **Remote Notification**
 The new payload allows you to add title, subtitle and body now.
 It will look like this
 ````
@@ -208,6 +208,8 @@ The new features in User Notifications includes:
 3. UNNotificationServiceExtension
 4. UNNotificationContentExtension
 
+Add new notifications targets to continue the below steps.
+
 * ### UNNotification Attachment
 Apple now supports audio, video, and image/gif to be attached in a notification.
 With 3D touch on the notification, user will be able to see the full-size of the attachment.
@@ -217,6 +219,8 @@ Now when a user receives a remote notification payload,
 BEFORE the notification shows up, the service extension will be called.
 It reads the notification payload and downloads the media through the given URL to display
 in the notification.
+
+Go to your `NotificationService.swift`
 
 ````swift
 class NotificationService: UNNotificationServiceExtension {
@@ -256,7 +260,7 @@ class NotificationService: UNNotificationServiceExtension {
 ````
 
 In order to show more when you expend the remote notification,
-you will have to add "mutable-content" in the payload.
+you will have to add `"mutable-content"` in the payload.
 ````
 {
   "aps":{
@@ -276,5 +280,32 @@ you will have to add "mutable-content" in the payload.
 
 After the service extension reads and downloads the media from `"attachment-url"` and passes in to content extension, content extension will be able to modify the notifications layouts.
 
+Because in the service extension, you've already downloaded the media, and saves it in the local container, you now can read the downloaded image directly.
+
+**Note: In order to read the image downloaded from service extension, you have to create an app group.**
+
+```swift
+func didReceive(_ notification: UNNotification) {
+    let content = notification.request.content
+    self.label?.text = content.body
+
+    if let attachment = content.attachments.first {
+        if attachment.url.startAccessingSecurityScopedResource() {
+            DispatchQueue.main.async {
+                self.imageView.image = UIImage(contentsOfFile: attachment.url.path)
+                attachment.url.stopAccessingSecurityScopedResource()
+            }
+        }  
+    }
+}
+```
+
+
+
+---------------------
+
+Source:
+1. https://onevcat.com/2016/08/notification/
+2. https://github.com/maquannene/UserNotifications
 
 
