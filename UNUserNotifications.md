@@ -39,7 +39,7 @@ the below function will be called to get the device token.
 
 --------------------------------------------------------------------------------------------
 
-* ### **Local Notification**
+## **Local Notification**
 
 1. Create a `UNMutableNotificationContent`:
 ```swift
@@ -81,7 +81,7 @@ There are 3 types of NotificationTrigger:
 
 
 
-* ### **Remote Notification**
+## **Remote Notification**
 The new payload allows you to add title, subtitle and body now.
 It will look like this
 ````
@@ -111,7 +111,7 @@ For localizing remote notification,
 
 -----------------------------------------------------------------------------------
 
-### **Notification Action**
+## **Notification Action**
 
 Register notification category with actions:
 
@@ -210,11 +210,11 @@ The new features in User Notifications includes:
 
 Add new notifications targets to continue the below steps.
 
-* ### UNNotification Attachment
+* ### **UNNotification Attachment**
 Apple now supports audio, video, and image/gif to be attached in a notification.
 With 3D touch on the notification, user will be able to see the full-size of the attachment.
 
-* ### UNNotificationServiceExtension 
+* ### **UNNotificationServiceExtension**
 Now when a user receives a remote notification payload,
 BEFORE the notification shows up, the service extension will be called.
 It reads the notification payload and downloads the media through the given URL to display
@@ -276,7 +276,7 @@ you will have to add `"mutable-content"` in the payload.
 
 
 
-* ### UNNotificationContentExtension
+* ### **UNNotificationContentExtension**
 
 After the service extension reads and downloads the media from `"attachment-url"` and passes in to content extension, content extension will be able to modify the notifications layouts.
 
