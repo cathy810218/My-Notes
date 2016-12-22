@@ -124,11 +124,8 @@ For localizing remote notification,
     }
 }
 ````
--------------------------------------------------------------------------------------
 
-Now, on to the extensions implementation!
-
------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 
 # **Notification Extension**
 
@@ -139,16 +136,19 @@ The new features in User Notifications includes:
 
 Add new notifications targets to continue the below steps.
 
-* ### **UNNotification Attachment**
+# **UNNotification Attachment**
+
 Apple now supports audio, video, and image/gif to be attached in a notification.
 With 3D touch on the notification, user will be able to see the full-size of the attachment.
 
 
-* ### **UNNotificationServiceExtension**
+# **UNNotificationServiceExtension**
+
 Now when a user receives a remote notification payload,
 BEFORE the notification shows up, the service extension will be called.
 It reads the notification payload and downloads the media through the given URL to display
 in the notification.
+
 
 Note: You only have 30 secs to do everything before the notification shows up.
 
@@ -195,7 +195,7 @@ First add a category for `UNNotificationAttachment` so we can create the attachm
 
 And now inside `NotificationService` implementation 
 
-````Objective-C
+```Objective-C
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request
                    withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
 {
@@ -253,11 +253,11 @@ And now inside `NotificationService` implementation
     contentHandler([content copy]);
 }
 
-````
+```
 
 In order to display rich notification, you will have to add `"mutable-content"` in the payload.
 
-````
+```
 {
   "aps":{
     "alert":{
@@ -270,11 +270,10 @@ In order to display rich notification, you will have to add `"mutable-content"` 
   "image": "https://68.media.tumblr.com/76c96e72a43dd60fca4e8321b37b5c84/tumblr_nzkmnoz0gf1u7gnm9o1_500.gif",
   "audio": "https://cardinalblue-personal.s3.amazonaws.com/yy-jim/xmas.mp3"}
 }
-````
+```
 
-------------------------------------------------------------------------------------------
 
-* ### **UNNotificationContentExtension**
+# **UNNotificationContentExtension**
 
 In order to make your action buttons show up on the notification,
 do the following steps in the `info.plist`:
@@ -286,7 +285,7 @@ Then add your category (String).
 
 And in the remote notification payload, just add 
 
-````
+```
 {
   "aps":{
     "alert":{
@@ -300,7 +299,7 @@ And in the remote notification payload, just add
   "image": "https://68.media.tumblr.com/76c96e72a43dd60fca4e8321b37b5c84/tumblr_nzkmnoz0gf1u7gnm9o1_500.gif",
   "audio": "https://cardinalblue-personal.s3.amazonaws.com/yy-jim/xmas.mp3"}
 }
-````
+```
 
 If you want to customize your notification content in content extension,
 again, in the `info.plist`, go to `NSExtension` -> `NSExtensionAttributes` add 
