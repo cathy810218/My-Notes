@@ -273,12 +273,13 @@ In order to display rich notification, you will have to add `"mutable-content"` 
 ````
 
 ------------------------------------------------------------------------------------------
+
 * ### **UNNotificationContentExtension**
 
 In order to make your action buttons show up on the notification,
 do the following steps in the `info.plist`:
 
-Since we add actions using categories, we will need to configure the `info.plist` in `NotificationContentExtension`.
+Since we add action buttons using categories, we will need to configure the `info.plist` in `NotificationContentExtension`.
 Under `NSExtension` (Dictionary) -> `NSExtensionAttributes` (Dictionary) add 
 `UNNotificationExtensionCategory` (Array)
 Then add your category (String).
