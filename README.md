@@ -2,6 +2,7 @@
 ---------------------------------
 ## Git 
 1. [Git for Github Cheat Sheet](GitCheatSheet.md)
+2. [Zsh ~/.zshrc shortcut](zshrc.md)
 
 ## Video AVKit & AVAudio
 
