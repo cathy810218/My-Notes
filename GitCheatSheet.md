@@ -1,7 +1,6 @@
 ##Inspect & Compare
 1. `git log` show the commit history for the currently active branch
-2. `git log` show the commits on branchA that are not on branchB
-3. `git diff branchB...branchA` show the diff of that is in branchA that is not in branchB
+2. `git diff branchB...branchA` show the diff of that is in branchA that is not in branchB
 
 
 ##Tracking Path Change
@@ -10,7 +9,7 @@
 
 
 ##Share & Update
-1. `git remote add [alias] [url]` add a gir URL as an alias
+1. `git remote add [alias] [url]` add a git URL as an alias
 2. `git fetch [alias]` fetch down all the branches from that Git remote
 2. `git merge [alias]/[branch]` merge a remote branch into your current branch to bring it up to date
 4. `git push [alias] [branch]`
@@ -40,7 +39,17 @@
 3. `git reset --hard <SOME-COMMIT>` make your current branch (typically master) back to point at <SOME-COMMIT> .
 
 ##Undo a Commit and Redo
-1. `git commit -m xxx` OH NO there's a typo!
-2. `git reset --soft HEAD^` leaves the working tree as it was 
-3. `edit` make corrections to working tree files
+1. `git commit -m xxx` OH NO! I shouldn't have commit this file!
+2. `git reset HEAD~` Now everything is unstaged
+3. `git add ...`
+4. `git commit -c ORIG_HEAD` redo the commit by starting with its log message
+
+##Add More Changes to the Previous Commit
+1. `git commit -m xxx` OH NO I forgot to add some file
+2. `git reset --soft HEAD~` this leaves the existing changes staged or git reset HEAD~1
+3. Edit your file
 4. `git commit -a -c ORIG_HEAD` redo the commit by starting with its log message
+
+##Get Back the Deleted Commit
+1. `git reflog` to get a list of commit shas
+2. `git checkout -b someNewBranchName shaYouDestroyed`
