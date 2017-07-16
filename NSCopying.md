@@ -11,7 +11,7 @@ There are two types of copy:
 
 ### What is _Shallow copy_?
 
-By default, when we want to create a copy of an object, it does _shallow copy_.
+Copying by default for all the collection classes in Foundation is _shallow_.
 
 Example of a Person class
 
@@ -131,7 +131,16 @@ by calling these two methods:
 `addFriend:friend` and `removeFriend:friend`
 
 
+You might notice that `_friends` uses `mutableCopy`. This is similar to `NSCopying`,
+but it uses this method instead:
 
+```objective-c
+- (instancetype)mutableCopyWithZone:(NSZone *)zone
+```
+
+If you have `mutable` and `immutable` variants, implement `NSMutableCopying`.
+
+`copy` always returns the same class, but `immutableCopy` and `mutableCopy` will return the specific variants.
 
 Source:
 
