@@ -142,6 +142,43 @@ If you have `mutable` and `immutable` variants, implement `NSMutableCopying`.
 
 `copy` always returns the same class, but `immutableCopy` and `mutableCopy` will return the specific variants.
 
+
+------------------------
+
+So now, if we want to compare two objects to see if they are equal or the same,
+instead of using `==`, we would use `isEqual:`.
+
+`==`: test if two pointers are pointing to the same object in memory (shallow comparison)
+
+`isEqual`: depends on the implementations. In our case, if two `Person`s have the same name, and have same friends we will say they are the same person and return `YES`.
+
+
+
+Override the `isEqual:object` method in `Person.m` to check equality for `Person`
+
+```objective-c
+-(BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+
+    if ([self class] != [object class]) {
+        return NO;
+    }
+    if (![_firstName isEqual:object.firstName] ||
+        ![_lastName isEqual:object.lastName] ||
+        ![_friend isEqual:object->_friends]) {
+            return NO;  
+    }
+    return YES;
+}
+
+```
+
+
+
+
+
 Source:
 
 https://developer.apple.com/documentation/foundation/nscopying
